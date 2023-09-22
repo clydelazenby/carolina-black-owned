@@ -41,7 +41,7 @@ class Addlisting extends Component {
     formData.append('email', this.state.email);
 
     // Send a POST request to your Django backend API endpoint for adding a listing
-    axios.post('/api/listings/add/', formData)
+    axios.post('api/listings/add/', formData)
       .then((response) => {
         // Handle successful response here (e.g., show a success message)
         console.log('Listing added successfully', response.data);
@@ -219,7 +219,6 @@ class Addlisting extends Component {
                         <div className="form-group ">
                           <label>Description </label>
                           <textarea
-                            defaultValue={''}
                             className="form-control"
                             name="description"
                             value={this.state.description}
@@ -230,7 +229,6 @@ class Addlisting extends Component {
                           <label>Tags Or Keywords (Comma Separated)</label>
                           <textarea
                             className="form-control"
-                            defaultValue={''}
                             name="keywords"
                             value={this.state.keywords}
                             onChange={this.handleInputChange}

@@ -37,7 +37,7 @@ function Login(props) {
     dispatch(loadingToggleAction(true));
 
     // Send login data to Django backend
-    axios.post('http://localhost:8000/api/auth/login/', { email, password })
+    axios.post('api/auth/login/', { email, password })
       .then(response => {
         dispatch(loginAction(email, password, props.history));
       })
