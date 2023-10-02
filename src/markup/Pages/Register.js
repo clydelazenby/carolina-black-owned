@@ -37,7 +37,7 @@ function Register(props) {
   const handleSubmit = async (e) => {
 	e.preventDefault();
 	try {
-	  const response = await api.post('http://localhost:8000/api/signup/', formData);
+	  const response = await api.post('http://localhost:8000/api/auth/signup/', formData);
 	  if (response.status === 201) {
 		console.log('User registered successfully');
 		// Check if the backend sent a redirect instruction
