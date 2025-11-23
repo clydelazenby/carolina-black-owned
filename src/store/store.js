@@ -6,6 +6,11 @@ import LocationReducer from './reducers/LocationReducer';
 import ReviewsReducer from './reducers/ReviewsReducer';
 import FavoritesReducer from './reducers/FavoritesReducer';
 import SearchFilterReducer from './reducers/SearchFilterReducer';
+import DashboardReducer from './reducers/DashboardReducer';
+import UserProfileReducer from './reducers/UserProfileReducer';
+import NotificationReducer from './reducers/NotificationReducer';
+import EcommerceReducer from './reducers/EcommerceReducer';
+import AdminReducer from './reducers/AdminReducer';
 import todoReducers from './reducers/Reducers';
 import { reducer as reduxFormReducer } from 'redux-form';
 const middleware = applyMiddleware(thunk);
@@ -20,9 +25,13 @@ const reducers = combineReducers({
     reviews: ReviewsReducer,
     favorites: FavoritesReducer,
     searchFilter: SearchFilterReducer,
-		todoReducers,
-	form: reduxFormReducer,
-
+    dashboard: DashboardReducer,
+    userProfile: UserProfileReducer,
+    notifications: NotificationReducer,
+    ecommerce: EcommerceReducer,
+    admin: AdminReducer,
+    todoReducers,
+    form: reduxFormReducer,
 });
 
 //const store = createStore(rootReducers);

@@ -30,6 +30,15 @@ import Blogstandardetail from './Pages/Blogstandardetail';
 import Contact from './Pages/Contact';
 import ScrollToTop from './Element/ScrollToTop';
 
+// Phase 4 imports
+import Dashboard from './Pages/Dashboard';
+import UserProfile from './Pages/UserProfile';
+import AdminPanel from './Pages/AdminPanel';
+import Notifications from './Pages/Notifications';
+import BookAppointment from './Pages/BookAppointment';
+import MyAppointments from './Pages/MyAppointments';
+import ClaimBusiness from './Pages/ClaimBusiness';
+
 const Markup = () =>{
 	return (
 		<>
@@ -61,6 +70,15 @@ const Markup = () =>{
 
 					<Route path='/blog-standard' exact component={Blogstandar} />
 					<Route path='/blog-details' exact component={Blogstandardetail} />
+
+					{/* Phase 4 Routes */}
+					<Route path='/dashboard' exact component={Dashboard} />
+					<Route path='/profile' exact component={UserProfile} />
+					<Route path='/admin' exact component={AdminPanel} />
+					<Route path='/notifications' exact component={Notifications} />
+					<Route path='/book-appointment' exact component={BookAppointment} />
+					<Route path='/my-appointments' exact component={MyAppointments} />
+					<Route path='/claim-business' exact component={ClaimBusiness} />
 				</Switch>
 			</div>
 			<ScrollToTop />

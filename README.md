@@ -67,6 +67,100 @@ A directory and marketplace web application designed to discover, list, and supp
 - Native share support on mobile devices (Web Share API)
 - Horizontal and vertical layout options
 
+### Business Owner Dashboard (Phase 4)
+- **Analytics Overview**
+  - Total views, favorites, and reviews tracking
+  - Monthly growth comparisons
+  - Top performing listings
+  - Category and location breakdowns
+- **Listing Management**
+  - View, edit, and delete your listings
+  - Claim existing businesses
+  - Verification status tracking
+- **Activity Feed**
+  - Recent reviews and engagement
+  - Performance notifications
+
+### User Profiles (Phase 4)
+- **Profile Customization**
+  - Display name, bio, and location
+  - Social media links
+  - Avatar support
+- **Achievement Badges**
+  - 10 earnable badges including:
+    - First Review, Active Reviewer, Review Master
+    - First Favorite, Collector
+    - Business Owner, Verified Owner
+    - Community Supporter, Explorer, Early Adopter
+- **Activity History**
+  - Track all user actions
+  - Review history
+  - Engagement metrics
+
+### Notifications System (Phase 4)
+- **In-App Notifications**
+  - New review alerts
+  - Favorite milestones
+  - Badge achievements
+  - Claim status updates
+- **Push Notifications**
+  - Browser push notification support
+  - Real-time alerts
+- **Email Preferences**
+  - Customizable notification settings
+  - Digest options
+
+### E-commerce Integration (Phase 4)
+- **Online Appointment Booking**
+  - Service selection
+  - Date and time picker
+  - Available slot detection
+  - Booking confirmation
+- **My Appointments**
+  - View upcoming and past appointments
+  - Cancel or reschedule
+  - Leave reviews after visits
+- **Shopping Cart** (Framework ready)
+  - Add products/services to cart
+  - Quantity management
+  - Order placement
+
+### Admin Panel (Phase 4)
+- **Business Claim Moderation**
+  - Review and approve/reject claims
+  - Verification management
+- **Listing Approval**
+  - Pending listings queue
+  - Approval/rejection workflow
+- **Content Moderation**
+  - Report management
+  - Content removal tools
+- **User Management**
+  - Ban/unban users
+  - Admin statistics
+
+### Interactive Map (Phase 4)
+- **Map Features**
+  - Marker clustering for dense areas
+  - Quick city navigation (8 major Carolina cities)
+  - Zoom controls
+  - Satellite/map view toggle
+- **Business Info**
+  - Click markers for business details
+  - Direct links to listings
+  - Directions integration
+
+### Mobile PWA (Phase 4)
+- **Progressive Web App**
+  - Install to home screen
+  - App-like experience
+- **Offline Support**
+  - Service worker caching
+  - Offline page access
+- **Background Sync**
+  - Queue actions when offline
+  - Sync when connection restored
+
 ### User Authentication
 - User registration and login
 - Session management with persistent tokens
@@ -193,6 +287,13 @@ The application connects to a Django backend API:
 | `/favorites` | Saved businesses |
 | `/blog` | Blog section |
 | `/contact-us` | Contact page |
+| `/dashboard` | Business owner dashboard (Phase 4) |
+| `/profile` | User profile page (Phase 4) |
+| `/notifications` | Notifications center (Phase 4) |
+| `/book-appointment` | Appointment booking (Phase 4) |
+| `/my-appointments` | User's appointments (Phase 4) |
+| `/claim-business` | Claim a business (Phase 4) |
+| `/admin` | Admin panel (Phase 4) |
 
 ## Redux Store Structure
 
@@ -231,6 +332,36 @@ The application connects to a Django backend API:
     ratingFilter,
     filteredResults: [],
     hasFiltersApplied
+  },
+  // Phase 4 additions
+  dashboard: {
+    myListings: [],
+    analytics: {},
+    claims: {},
+    loading
+  },
+  userProfile: {
+    profile: {},
+    activityHistory: [],
+    badges: [],
+    loading
+  },
+  notifications: {
+    notifications: [],
+    preferences: {},
+    unreadCount
+  },
+  ecommerce: {
+    services: {},
+    appointments: [],
+    orders: [],
+    cart: []
+  },
+  admin: {
+    pendingClaims: [],
+    pendingListings: [],
+    reportedContent: [],
+    stats: {}
   }
 }
 ```
