@@ -3,6 +3,8 @@ import PostsReducer from './reducers/PostsReducer';
 import thunk from 'redux-thunk';
 import { AuthReducer } from './reducers/AuthReducer';
 import LocationReducer from './reducers/LocationReducer';
+import ReviewsReducer from './reducers/ReviewsReducer';
+import FavoritesReducer from './reducers/FavoritesReducer';
 import todoReducers from './reducers/Reducers';
 import { reducer as reduxFormReducer } from 'redux-form';
 const middleware = applyMiddleware(thunk);
@@ -14,6 +16,8 @@ const reducers = combineReducers({
     posts: PostsReducer,
     auth: AuthReducer,
     location: LocationReducer,
+    reviews: ReviewsReducer,
+    favorites: FavoritesReducer,
 		todoReducers,
 	form: reduxFormReducer,
 

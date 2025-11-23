@@ -22,7 +22,7 @@ import Gridmaprightsidebar from './Pages/Gridmaprightsidebar';
 import Listingdetail from './Pages/Listingdetail';
 import Listingdetail2 from './Pages/Listingdetail2';
 import Listingdetail3 from './Pages/Listingdetail3';
-
+import Favorites from './Pages/Favorites';
 
 import Blogstandar from './Pages/Blogstandar';
 import Blogstandardetail from './Pages/Blogstandardetail';
@@ -57,7 +57,8 @@ const Markup = () =>{
 					<Route path='/listing-details' exact component={Listingdetail} />
 					<Route path='/listing-details-2' exact component={Listingdetail2} />
 					<Route path='/listing-details-3' exact component={Listingdetail3} />
-					
+					<Route path='/favorites' exact component={Favorites} />
+
 					<Route path='/blog-standard' exact component={Blogstandar} />
 					<Route path='/blog-details' exact component={Blogstandardetail} />
 				</Switch>
