@@ -1,15 +1,23 @@
+/**
+ * API Service
+ * @deprecated Use src/services/api.js instead for new code
+ *
+ * This file is kept for backward compatibility.
+ * New code should import { authAPI, listingsAPI } from 'services/api.js'
+ */
+
 import axios from 'axios';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 
-// Authentication URLs
-const signUpUrl = "http://localhost:8000/api/auth/signup/";
-const loginUrl = "http://localhost:8000/api/auth/login/";
+// Authentication URLs - now using centralized config
+const signUpUrl = `${API_BASE_URL}${API_ENDPOINTS.auth.signup}`;
+const loginUrl = `${API_BASE_URL}${API_ENDPOINTS.auth.login}`;
 
-
-// Listings URLs
-const listListingsUrl = "http://localhost:8000/api/listings/";
-const createListingUrl = "http://localhost:8000/api/listings/add/";
-const updateListingUrl = (listingId) => `http://localhost:8000/api/listings/update/${listingId}/`;
-const deleteListingUrl = (listingId) => `http://localhost:8000/api/listings/delete/${listingId}/`;
+// Listings URLs - now using centralized config
+const listListingsUrl = `${API_BASE_URL}${API_ENDPOINTS.listings.list}`;
+const createListingUrl = `${API_BASE_URL}${API_ENDPOINTS.listings.create}`;
+const updateListingUrl = (listingId) => `${API_BASE_URL}${API_ENDPOINTS.listings.update(listingId)}`;
+const deleteListingUrl = (listingId) => `${API_BASE_URL}${API_ENDPOINTS.listings.delete(listingId)}`;
 
 
 // Authentication functions

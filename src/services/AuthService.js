@@ -1,9 +1,15 @@
+/**
+ * Authentication Service
+ * Handles user authentication, token management, and session persistence
+ */
+
 import axios from 'axios';
 import swal from 'sweetalert';
 import {
     loginConfirmedAction,
     logout,
 } from '../store/actions/AuthActions';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 
 export function signUp(email, password) {
     const postData = {
@@ -11,7 +17,7 @@ export function signUp(email, password) {
         password,
     };
     return axios.post(
-        `http://localhost:8000/api/signup/`,
+        `${API_BASE_URL}${API_ENDPOINTS.auth.signup}`,
         postData,
     );
 }
@@ -22,7 +28,7 @@ export function login(email, password) {
         password,
     };
     return axios.post(
-        `http://localhost:8000/api/login/`,
+        `${API_BASE_URL}${API_ENDPOINTS.auth.login}`,
         postData,
     );
 }

@@ -204,6 +204,7 @@ A directory and marketplace web application designed to discover, list, and supp
 - Node.js (v14 or higher recommended)
 - npm or yarn
 - Backend API server (Django) running on `http://localhost:8000`
+  - Backend repo: [carolina_black_owned_be](https://github.com/clydelazenby/carolina_black_owned_be)
 
 ### Installation
 
@@ -218,12 +219,35 @@ cd carolina-black-owned
 npm install
 ```
 
-3. Start the development server:
+3. Configure environment (optional - defaults to localhost:8000):
+```bash
+# .env.development is pre-configured for local development
+# Edit .env.production for production deployment
+```
+
+4. Start the development server:
 ```bash
 npm start
 ```
 
 The application will be available at `http://localhost:3000`.
+
+### Environment Configuration
+
+The application uses environment variables for API configuration:
+
+| File | Purpose |
+|------|---------|
+| `.env.development` | Local development (localhost:8000) |
+| `.env.production` | Production deployment |
+| `.env.example` | Template for new environments |
+
+**Key Variables:**
+```env
+REACT_APP_API_URL=http://localhost:8000
+REACT_APP_API_VERSION=v1
+REACT_APP_DEBUG=true
+```
 
 ### Available Scripts
 
@@ -236,43 +260,104 @@ The application will be available at `http://localhost:3000`.
 ## Project Structure
 
 ```
-/src
-├── /markup              # UI Components
-│   ├── /Layout          # Header, Footer components
-│   ├── /Pages           # Page components
-│   └── /Element         # Reusable components
-├── /store               # Redux state management
-│   ├── /actions         # Action creators
-│   ├── /reducers        # State reducers
-│   └── /selectors       # State selectors
-├── /services            # API calls and business logic
-├── /hooks               # Custom React hooks
-├── /css                 # Stylesheets
-└── /images              # Static assets
+/
+├── /docs                    # Documentation
+│   ├── BACKEND_REVIEW.md    # Backend code review & recommendations
+│   ├── INTEGRATION_GUIDE.md # Frontend-backend integration guide
+│   └── BACKEND_ENDPOINTS_CODE.md # Ready-to-use backend code
+├── /src
+│   ├── /config              # Configuration files
+│   │   └── api.js           # Centralized API endpoints
+│   ├── /markup              # UI Components
+│   │   ├── /Layout          # Header, Footer components
+│   │   ├── /Pages           # Page components
+│   │   └── /Element         # Reusable components
+│   ├── /store               # Redux state management
+│   │   ├── /actions         # Action creators
+│   │   ├── /reducers        # State reducers
+│   │   └── /selectors       # State selectors
+│   ├── /services            # API services
+│   │   ├── api.js           # Unified API service (NEW)
+│   │   ├── AuthService.js   # Authentication
+│   │   └── ...              # Other services
+│   ├── /hooks               # Custom React hooks
+│   ├── /css                 # Stylesheets
+│   └── /images              # Static assets
+├── .env.development         # Development environment config
+├── .env.production          # Production environment config
+└── .env.example             # Environment template
 ```
 
-## API Endpoints
+## API Integration
+
+The application uses a centralized API service (`src/services/api.js`) for all backend communications.
+
+### Using the API Service
+
+```javascript
+// Import specific API modules
+import { authAPI, listingsAPI, reviewsAPI, favoritesAPI } from './services/api';
+
+// Authentication
+await authAPI.login({ email, password });
+await authAPI.signup(userData);
+
+// Listings
+const { data } = await listingsAPI.getAll();
+await listingsAPI.create(formData);
+
+// Reviews
+await reviewsAPI.create(listingId, { rating: 5, comment: 'Great!' });
+
+// Favorites
+await favoritesAPI.add(listingId);
+```
+
+### API Endpoints
 
 The application connects to a Django backend API:
 
-### Authentication
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/signup/` | User registration |
-| POST | `/api/auth/login/` | User login |
+#### Authentication
+| Method | Endpoint | Description | Status |
+|--------|----------|-------------|--------|
+| POST | `/api/auth/signup/` | User registration | Working |
+| POST | `/api/auth/login/` | User login | Working |
+| POST | `/api/auth/logout/` | User logout | Pending |
+| GET/PUT | `/api/auth/profile/` | User profile | Pending |
 
-### Listings
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/listings/` | Get all listings |
-| POST | `/api/listings/add/` | Create new listing |
-| PUT | `/api/listings/update/{id}/` | Update listing |
-| DELETE | `/api/listings/delete/{id}/` | Delete listing |
+#### Listings
+| Method | Endpoint | Description | Status |
+|--------|----------|-------------|--------|
+| GET | `/api/listings/` | Get all listings | Working |
+| POST | `/api/listings/add/` | Create new listing | Working |
+| PUT | `/api/listings/update/{id}/` | Update listing | Working |
+| DELETE | `/api/listings/delete/{id}/` | Delete listing | Working |
 
-### Content
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/homepage/` | Homepage data |
+#### Reviews (Phase 4)
+| Method | Endpoint | Description | Status |
+|--------|----------|-------------|--------|
+| GET | `/api/listings/{id}/reviews/` | Get reviews | Pending |
+| POST | `/api/listings/{id}/reviews/` | Create review | Pending |
+
+#### Favorites (Phase 4)
+| Method | Endpoint | Description | Status |
+|--------|----------|-------------|--------|
+| GET | `/api/favorites/` | Get favorites | Pending |
+| POST | `/api/favorites/add/` | Add favorite | Pending |
+| DELETE | `/api/favorites/remove/{id}/` | Remove favorite | Pending |
+
+#### Dashboard (Phase 4)
+| Method | Endpoint | Description | Status |
+|--------|----------|-------------|--------|
+| GET | `/api/dashboard/stats/` | Dashboard statistics | Pending |
+| GET | `/api/dashboard/my-listings/` | User's listings | Pending |
+
+#### Core
+| Method | Endpoint | Description | Status |
+|--------|----------|-------------|--------|
+| GET | `/api/homepage/` | Homepage data | Working |
+
+> **Note:** Endpoints marked "Pending" require backend implementation. See `docs/BACKEND_ENDPOINTS_CODE.md` for ready-to-use implementation code.
 
 ## Page Routes
 
@@ -365,6 +450,25 @@ The application connects to a Django backend API:
   }
 }
 ```
+
+## Documentation
+
+Detailed documentation is available in the `/docs` directory:
+
+| Document | Description |
+|----------|-------------|
+| [INTEGRATION_GUIDE.md](docs/INTEGRATION_GUIDE.md) | Complete frontend-backend integration guide |
+| [BACKEND_REVIEW.md](docs/BACKEND_REVIEW.md) | Backend code review with security recommendations |
+| [BACKEND_ENDPOINTS_CODE.md](docs/BACKEND_ENDPOINTS_CODE.md) | Ready-to-use code for missing backend endpoints |
+
+## Backend Repository
+
+The Django backend is maintained in a separate repository:
+- **Repository:** [carolina_black_owned_be](https://github.com/clydelazenby/carolina_black_owned_be)
+- **Branch:** dev
+- **Framework:** Django 4.x + Django REST Framework
+
+See the [Integration Guide](docs/INTEGRATION_GUIDE.md) for setup instructions.
 
 ## Contributing
 

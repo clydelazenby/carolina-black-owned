@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import api from '../../api';
+import { authAPI } from '../../services/api';
 import { withRouter } from 'react-router-dom';
 import bnr from './../../images/background/bg7.jpg';
 
@@ -35,26 +35,26 @@ function Register(props) {
   };
 
   const handleSubmit = async (e) => {
-	e.preventDefault();
-	try {
-	  const response = await api.post('http://localhost:8000/api/auth/signup/', formData);
-	  if (response.status === 201) {
-		console.log('User registered successfully');
-		// Check if the backend sent a redirect instruction
-		if (response.data.redirect === 'homepage') {
-		  // Redirect to homepage or whatever route you have for it
-		  props.history.push('/');
-		}
-	  } else {
-		console.error('Registration failed');
-	  }
-	} catch (error) {
-	  if (error.response) {
-		setErrors(error.response.data);
-	  } else {
-		console.error('Error:', error.message);
-	  }
-	}
+    e.preventDefault();
+    try {
+      const response = await authAPI.signup(formData);
+      if (response.status === 201) {
+        console.log('User registered successfully');
+        // Check if the backend sent a redirect instruction
+        if (response.data.redirect === 'homepage') {
+          // Redirect to homepage or whatever route you have for it
+          props.history.push('/');
+        }
+      } else {
+        console.error('Registration failed');
+      }
+    } catch (error) {
+      if (error.response) {
+        setErrors(error.response.data);
+      } else {
+        console.error('Error:', error.message);
+      }
+    }
   };
 
   return (

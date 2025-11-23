@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from './../Layout/Header';
 import Footer from './../Layout/Footer';
 import Sidebar from './../Element/Sidebar';
+import { listingsAPI } from '../../services/api';
 
 var bnr = require('./../../images/banner/bnr3.jpg');
 
@@ -42,22 +43,15 @@ class Listingleftsidebar extends Component {
   }
 
   async componentDidMount() {
-	try {
-	  console.log('Fetching data...');
-	  const response = await fetch('http://127.0.0.1:8000/api/listings/');
-	  
-	  if (!response.ok) {
-		throw new Error('Network response was not ok');
-	  }
-  
-	  console.log('Data received from the server...');
-	  const data = await response.json();
-	  console.log('Data:', data);
-  
-	  this.setState({ listings: data.listings });
-	} catch (error) {
-	  console.error('Fetch error:', error);
-	}
+    try {
+      console.log('Fetching data...');
+      const response = await listingsAPI.getAll();
+      console.log('Data received from the server...');
+      console.log('Data:', response.data);
+      this.setState({ listings: response.data.listings || response.data });
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
   }
   render() {
     return (
