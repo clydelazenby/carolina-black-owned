@@ -13975,3 +13975,156 @@ ol.commentlist li .star-rating {
 .yellow-2.site-button:hover{
 	background: #f2e045;
 }
+
+/* ===================================
+   NEAR YOU SECTION & LOCATION FEATURES
+   =================================== */
+
+/* Near You Section */
+.near-you-section {
+    padding: 60px 0;
+}
+
+.near-you-section .section-head {
+    margin-bottom: 30px;
+}
+
+.near-you-section .box-title i {
+    margin-right: 8px;
+}
+
+/* Location Status Messages */
+.location-status {
+    margin: 15px 0;
+}
+
+.location-status .fa-spinner {
+    margin-right: 8px;
+}
+
+.location-controls {
+    margin: 10px 0 20px;
+}
+
+/* Radius Select Dropdown */
+.radius-select {
+    display: inline-block;
+    padding: 4px 12px;
+    margin: 0 5px;
+    border: 1px solid #7133e2;
+    border-radius: 4px;
+    background: #fff;
+    color: #7133e2;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radius-select:hover,
+.radius-select:focus {
+    background: #7133e2;
+    color: #fff;
+    outline: none;
+}
+
+/* Distance Badge on Business Cards */
+.distance-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(113, 51, 226, 0.95);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.distance-badge i {
+    margin-right: 5px;
+}
+
+/* Business Card Enhancements */
+.listing-bx .listing-media {
+    position: relative;
+    overflow: hidden;
+}
+
+.listing-bx .category-tag {
+    color: #7133e2;
+    font-weight: 500;
+}
+
+.listing-bx .category-tag i {
+    margin-right: 5px;
+}
+
+/* Open/Closed Status */
+.place-info .open {
+    color: #28a745;
+}
+
+.place-info .closed {
+    color: #dc3545;
+}
+
+/* Location Detection Button */
+.near-you-section .btn-primary {
+    background: #7133e2;
+    border-color: #7133e2;
+}
+
+.near-you-section .btn-primary:hover {
+    background: #5a28b8;
+    border-color: #5a28b8;
+}
+
+.near-you-section .btn-outline-primary {
+    color: #7133e2;
+    border-color: #7133e2;
+}
+
+.near-you-section .btn-outline-primary:hover {
+    background: #7133e2;
+    color: #fff;
+}
+
+/* City Header Display */
+.city-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.city-header .location-icon {
+    font-size: 24px;
+    color: #7133e2;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .near-you-section {
+        padding: 40px 0;
+    }
+
+    .distance-badge {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .radius-select {
+        padding: 3px 8px;
+        font-size: 14px;
+    }
+}

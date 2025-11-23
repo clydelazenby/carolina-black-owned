@@ -4,10 +4,11 @@ import axios from 'axios';
 import Header from './../Layout/Header';
 import Footer from './../Layout/Footer';
 import { Link } from 'react-router-dom';
-import popCity from './../Element/popCity';
+import PopCity from './../Element/popCity';
 import Topplacesowl from './../Element/Topplacesowl';
 import Userowl from './../Element/Userowl';
 import Tabcontent from './../Element/Tabcontent';
+import NearYou from './../Element/NearYou';
 
 import bnr from './../../images/main-slider/header-background.jpg';
 import img1 from './../../images/background/1bg7.jpg';
@@ -80,6 +81,9 @@ class Homepage extends Component {
                         </div>
                     </div>
                     <div className="content-block">
+                        {/* Businesses Near You - Auto-detects location */}
+                        <NearYou />
+
                         <div className="section-full bg-white content-inner">
                             <div className="container">
                                 <div className="section-head text-black text-center">
@@ -88,7 +92,7 @@ class Homepage extends Component {
                                     {homepageData && <p>{homepageData.description}</p>}
                                 </div>
 
-                                <popCity />
+                                <PopCity />
                             </div>
                         </div>
 
