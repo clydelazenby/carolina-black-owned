@@ -12,13 +12,24 @@ A directory and marketplace web application designed to discover, list, and supp
 ### Search & Filtering (Phase 3)
 - **Real-time search** - Search businesses by name, tagline, description, or category
 - **Location filtering** - Filter by city or state
-- **Category filtering** - Filter by business categories (Restaurant, Retail, Technology, etc.)
+- **Category filtering** - Filter by 10 business categories:
+  - Restaurant
+  - Beauty & Grooming
+  - Retail
+  - Cafe
+  - Technology
+  - Health & Wellness
+  - Professional Services
+  - Entertainment
+  - Automotive
+  - Home Services
 - **Rating filter** - Filter by minimum star rating
 - **Multiple sort options**:
   - Relevance (default)
   - Highest/Lowest rated
   - Name (A-Z / Z-A)
   - Newest first
+  - Distance from user (when location enabled)
 - **Clear filters** - One-click reset of all active filters
 - **Active filter count** - Visual indicator of applied filters
 - **Grid/List toggle** - Switch between view modes
@@ -27,7 +38,11 @@ A directory and marketplace web application designed to discover, list, and supp
 - Auto-detect user location using browser Geolocation API
 - Find nearby businesses based on configurable search radius (5-100 miles)
 - Distance calculation using Haversine formula
-- Automatic detection of nearest Carolina city (Charlotte, Raleigh, Durham, Charleston, etc.)
+- Automatic detection of nearest Carolina city from 11 major cities:
+  - North Carolina: Charlotte, Raleigh, Durham, Greensboro, Winston-Salem, Fayetteville, Wilmington
+  - South Carolina: Charleston, Columbia, Greenville, Myrtle Beach
+- Location caching for improved performance (5-minute cache)
+- Distance display formatting ("Nearby", "5.2 mi", "45 mi")
 
 ### Reviews & Ratings
 - View and submit reviews for businesses
@@ -40,6 +55,17 @@ A directory and marketplace web application designed to discover, list, and supp
 - Toggle favorite status on any listing
 - Dedicated favorites page to view all saved businesses
 - Clear all favorites functionality
+
+### Social Sharing
+- Share businesses across multiple platforms:
+  - Facebook
+  - Twitter/X
+  - LinkedIn
+  - WhatsApp
+  - Email
+- Copy link to clipboard functionality
+- Native share support on mobile devices (Web Share API)
+- Horizontal and vertical layout options
 
 ### User Authentication
 - User registration and login
