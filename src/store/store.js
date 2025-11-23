@@ -5,6 +5,7 @@ import { AuthReducer } from './reducers/AuthReducer';
 import LocationReducer from './reducers/LocationReducer';
 import ReviewsReducer from './reducers/ReviewsReducer';
 import FavoritesReducer from './reducers/FavoritesReducer';
+import SearchFilterReducer from './reducers/SearchFilterReducer';
 import todoReducers from './reducers/Reducers';
 import { reducer as reduxFormReducer } from 'redux-form';
 const middleware = applyMiddleware(thunk);
@@ -18,6 +19,7 @@ const reducers = combineReducers({
     location: LocationReducer,
     reviews: ReviewsReducer,
     favorites: FavoritesReducer,
+    searchFilter: SearchFilterReducer,
 		todoReducers,
 	form: reduxFormReducer,
 

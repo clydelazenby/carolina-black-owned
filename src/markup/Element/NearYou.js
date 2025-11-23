@@ -15,9 +15,9 @@ import {
 import { formatDistance, CAROLINA_CITIES } from '../../services/GeolocationService';
 import BusinessCard from './BusinessCard';
 
-// Sample businesses data (will be replaced with API data)
+// Default businesses data - used when API data is not available
 // Each business has coordinates for distance calculation
-const sampleBusinesses = [
+const defaultBusinesses = [
     {
         id: 1,
         name: "Queen City Soul Food",
@@ -151,8 +151,26 @@ class NearYou extends Component {
         }
     };
 
+    getBusinessesSource = () => {
+        // Use posts from Redux store if available, otherwise use default businesses
+        const { posts } = this.props;
+        if (posts && posts.length > 0) {
+            // Map posts to business format if needed
+            return posts.map(post => ({
+                ...post,
+                // Ensure required fields exist
+                latitude: post.latitude || 0,
+                longitude: post.longitude || 0,
+                rating: post.rating || 0,
+                isOpen: post.isOpen !== undefined ? post.isOpen : true,
+            }));
+        }
+        return defaultBusinesses;
+    };
+
     calculateNearbyBusinesses = () => {
         const { coordinates, searchRadius } = this.props;
+        const businesses = this.getBusinessesSource();
 
         if (!coordinates) {
             this.showDefaultBusinesses();
@@ -160,7 +178,7 @@ class NearYou extends Component {
         }
 
         // Calculate distance for each business
-        const businessesWithDistance = sampleBusinesses.map(business => {
+        const businessesWithDistance = businesses.map(business => {
             const distance = this.calculateDistance(
                 coordinates.lat,
                 coordinates.lng,
@@ -180,7 +198,8 @@ class NearYou extends Component {
 
     showDefaultBusinesses = () => {
         // Show all businesses without distance when location is unavailable
-        this.setState({ nearbyBusinesses: sampleBusinesses });
+        const businesses = this.getBusinessesSource();
+        this.setState({ nearbyBusinesses: businesses });
     };
 
     calculateDistance = (lat1, lng1, lat2, lng2) => {
@@ -346,6 +365,8 @@ const mapStateToProps = (state) => ({
     error: selectLocationError(state),
     locationDetected: selectLocationDetected(state),
     searchRadius: selectSearchRadius(state),
+    // Get posts from store to use as business data source
+    posts: state.posts?.posts || [],
 });
 
 const mapDispatchToProps = {

@@ -7,8 +7,21 @@ A directory and marketplace web application designed to discover, list, and supp
 ### Business Directory
 - Browse all Black-owned businesses in the Carolinas
 - Multiple viewing options: list view, grid view, and map overlay
-- Search and filter capabilities by category and location
 - Detailed business pages with descriptions, social links, and contact info
+
+### Search & Filtering (Phase 3)
+- **Real-time search** - Search businesses by name, tagline, description, or category
+- **Location filtering** - Filter by city or state
+- **Category filtering** - Filter by business categories (Restaurant, Retail, Technology, etc.)
+- **Rating filter** - Filter by minimum star rating
+- **Multiple sort options**:
+  - Relevance (default)
+  - Highest/Lowest rated
+  - Name (A-Z / Z-A)
+  - Newest first
+- **Clear filters** - One-click reset of all active filters
+- **Active filter count** - Visual indicator of applied filters
+- **Grid/List toggle** - Switch between view modes
 
 ### Location-Based Discovery
 - Auto-detect user location using browser Geolocation API
@@ -183,6 +196,15 @@ The application connects to a Django backend API:
   reviews: {
     byBusinessId: {},
     loading
+  },
+  searchFilter: {
+    searchQuery,
+    locationFilter,
+    categoryFilter,
+    sortBy,
+    ratingFilter,
+    filteredResults: [],
+    hasFiltersApplied
   }
 }
 ```
